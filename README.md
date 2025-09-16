@@ -3,7 +3,7 @@
 # REDIC_SERV
 
 ![](https://img.shields.io/badge/Python-3.10-blue)
-![](https://img.shields.io/badge/LICENSE-Apache2.0-%2300557f)
+![](https://img.shields.io/badge/LICENSE-Apache--2.0-%2300557f)
 ![](https://img.shields.io/badge/lastest-2025--09--16-green)
 ![](https://img.shields.io/badge/contact-dr.mokira%40gmail.com-blueviolet)
 
