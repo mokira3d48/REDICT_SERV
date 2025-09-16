@@ -1,6 +1,6 @@
 <div align="center">
 
-# REDICT_SERV
+# REDIC_SERV
 
 ![](https://img.shields.io/badge/Python-3.10-blue)
 ![](https://img.shields.io/badge/LICENSE-Apache2.0-%2300557f)
@@ -15,27 +15,25 @@ to redirect all requests to a URL provided as a command-line argument.
 
 To use this script:
 
-1. **Save it** as `redirect_server.py`
-
-2. **Install required dependencies**:
+1. **Install required dependencies**:
 ```bash
 pip install flask gunicorn
 ```
 
-3. **Run with Flask development server** (for testing):
+2. **Run with Flask development server** (for testing):
 ```bash
-python redirect_server.py "https://google.com"
+python redic_serv "https://google.com"
 ```
 
-4. **Run with Gunicorn** (for production):
+3. **Run with Gunicorn** (for production):
 ```bash
-gunicorn redirect_server:app -b 0.0.0.0:8000
+gunicorn redic_serv:app -b 0.0.0.0:8000
 ```
 
 When using Gunicorn, set the redirect URL via environment variable:
 ```bash
 export REDIRECT_URL="https://google.com"
-gunicorn redirect_server:app -b 0.0.0.0:8000
+gunicorn redic_serv:app -b 0.0.0.0:8000
 ```
 
 ## Key Features:
@@ -59,7 +57,7 @@ timeout = 120
 
 Run with config file:
 ```bash
-gunicorn redirect_server:app -c gunicorn_conf.py
+gunicorn redic_serv:app -c gunicorn_conf.py
 ```
 
 The server will redirect all incoming requests (any path)
@@ -69,7 +67,7 @@ in the `redirect()` call.
 
 ```bash
 export REDIRECT_URL="https://google.com"
-gunicorn redirect_server:app -b 0.0.0.0:8000
+gunicorn redic_serv:app -b 0.0.0.0:8000
 ```
 
 ## Licence
@@ -85,4 +83,3 @@ For your question or suggestion, contact me please :
 - **Email**: dr.mokira@gmail.com
 - **GitHub**: [mokira3d48](https://github.com/mokira3d48)
 - **GitLab**: [mokira3d48](https://gitlab.com/mokira3d48)
-
