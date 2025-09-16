@@ -22,18 +22,18 @@ pip install flask gunicorn
 
 2. **Run with Flask development server** (for testing):
 ```bash
-python redic_serv "https://google.com"
+python redicserv "https://google.com"
 ```
 
 3. **Run with Gunicorn** (for production):
 ```bash
-gunicorn redic_serv:app -b 0.0.0.0:8000
+gunicorn redicserv:app -b 0.0.0.0:8000
 ```
 
 When using Gunicorn, set the redirect URL via environment variable:
 ```bash
 export REDIRECT_URL="https://google.com"
-gunicorn redic_serv:app -b 0.0.0.0:8000
+gunicorn redicserv:app -b 0.0.0.0:8000
 ```
 
 ## Key Features:
@@ -57,7 +57,7 @@ timeout = 120
 
 Run with config file:
 ```bash
-gunicorn redic_serv:app -c gunicorn_conf.py
+gunicorn redicserv:app -c gunicorn_conf.py
 ```
 
 The server will redirect all incoming requests (any path)
@@ -67,7 +67,7 @@ in the `redirect()` call.
 
 ```bash
 export REDIRECT_URL="https://google.com"
-gunicorn redic_serv:app -b 0.0.0.0:8000
+gunicorn redicserv:app -b 0.0.0.0:8000
 ```
 
 ## Licence
