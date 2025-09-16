@@ -1,4 +1,14 @@
+<div align="center">
+
 # REDICT_SERV
+
+![](https://img.shields.io/badge/Python-3.10-blue)
+![](https://img.shields.io/badge/LICENSE-Apache2.0-%2300557f)
+![](https://img.shields.io/badge/lastest-2025--09--16-green)
+![](https://img.shields.io/badge/contact-dr.mokira%40gmail.com-blueviolet)
+
+
+</div>
 
 Python script that creates a Flask web server using Gunicorn
 to redirect all requests to a URL provided as a command-line argument.
