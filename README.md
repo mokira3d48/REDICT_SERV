@@ -22,7 +22,13 @@ pip install flask gunicorn
 
 2. **Run with Flask development server** (for testing):
 ```bash
-python redicserv "https://google.com"
+python redicserv.py "https://google.com"
+```
+
+or
+
+```bash
+./redicserv.py "https://google.com"
 ```
 
 3. **Run with Gunicorn** (for production):

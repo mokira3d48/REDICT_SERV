@@ -13,7 +13,7 @@ pip install flask gunicorn
 
 2. **Run with Flask development server** (for testing):
 ```bash
-python redic_serv "https://google.com"
+python redicserv "https://google.com"
 ```
 
 3. **Run with Gunicorn** (for production):
@@ -24,7 +24,7 @@ gunicorn redic_serv:app -b 0.0.0.0:8000
 When using Gunicorn, set the redirect URL via environment variable:
 ```bash
 export REDIRECT_URL="https://google.com"
-gunicorn redic_serv:app -b 0.0.0.0:8000
+gunicorn redicserv:app -b 0.0.0.0:8000
 ```
 
 ## Key Features:
@@ -48,7 +48,7 @@ timeout = 120
 
 Run with config file:
 ```bash
-gunicorn redic_serv:app -c gunicorn_conf.py
+gunicorn redicserv:app -c gunicorn_conf.py
 ```
 
 The server will redirect all incoming requests (any path)
@@ -58,11 +58,12 @@ in the `redirect()` call.
 
 ```bash
 export REDIRECT_URL="https://google.com"
-gunicorn redic_serv:app -b 0.0.0.0:8000
+gunicorn redicserv:app -b 0.0.0.0:8000
 ```
 """
 import os
 import sys
+import argparse
 from flask import Flask, redirect
 
 __version__ = '0.1.0'
@@ -100,19 +101,28 @@ def create_app(redirect_url: str=None) -> Flask:
 
 def main() -> int:
     """Main function to start and run server of redirection."""
-    if len(sys.argv) < 2:
-        print("Usage: ./redictserv \"<URL>\" or python redictserv \"<URL>\"")
-        print("Example: python redirect_server.py https://google.com")
-        return 1
+    parser = argparse.ArgumentParser(prog="REDIC SERV")
+    parser.add_argument(
+        "link", type=str,
+        help=("Usage: ./redictserv \"<URL>\" or python redictserv \"<URL>\""
+              "Example: python redirect_server.py \"https://google.com\"")
+        )
+    parser.add_argument("--host", type=str, default="0.0.0.0")
+    parser.add_argument("--port", type=int, default=5000)
+    parser.add_argument(
+        "--release", action="store_true",
+        help="By default, it runs in debug mode."
+        )
+    args = parser.parse_args()
     # Get URL from command line argument:
-    redirect_url = sys.argv[1]
+    redirect_url = args.link
 
     # Set environment variable for Gunicorn compatibility:
     os.environ['REDIRECT_URL'] = redirect_url
     # Create app instance:
     app = create_app(redirect_url)
     # Run with Flask development server (for testing):
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host=args.host, port=args.port, debug=(not args.release))
     return 0
 
 
